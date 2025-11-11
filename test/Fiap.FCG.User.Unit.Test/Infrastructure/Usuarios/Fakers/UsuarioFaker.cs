@@ -1,0 +1,15 @@
+﻿using Fiap.FCG.User.Domain.Usuarios;
+
+namespace Fiap.FCG.User.Unit.Test.Infrastructure.Usuarios.Fakers;
+
+public static class UsuarioFaker
+{
+    public static Usuario Valido()
+    {
+        var nome  = "João Teste";
+        var email = "joao@teste.com";
+        var senha = "Abc@1234";
+
+        return Usuario.Criar(nome, email, senha).Valor!;
+    }
+}

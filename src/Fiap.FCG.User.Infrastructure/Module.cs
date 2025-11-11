@@ -1,0 +1,63 @@
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Text;
+using Fiap.FCG.User.Domain.Usuarios;
+using Fiap.FCG.User.Infrastructure._Shared;
+using Fiap.FCG.User.Infrastructure.Autenticacao;
+using Fiap.FCG.User.Infrastructure.Usuarios;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
+
+namespace Fiap.FCG.User.Infrastructure;
+
+[ExcludeFromCodeCoverage]
+public static class Module
+{
+    public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
+    {
+        AddDbContext(services, configuration);
+        AddRepositories(services);
+        AddAuthentication(services, configuration);
+    }
+
+    private static void AddAuthentication(IServiceCollection services, IConfiguration configuration)
+    {
+        var fromEnvJwtIssuer   = Environment.GetEnvironmentVariable("JWT_ISSUER") ?? configuration["JWT_ISSUER"];
+        var fromEnvJwtAudience = Environment.GetEnvironmentVariable("JWT_AUDIENCE") ?? configuration["JWT_AUDIENCE"];
+        var fromEnvJwtKey      = Environment.GetEnvironmentVariable("JWT_KEY") ?? configuration["JWT_KEY"];
+        
+        services.AddAuthentication("Bearer")
+            .AddJwtBearer("Bearer", options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer   = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer              = fromEnvJwtIssuer,
+                    ValidAudience            = fromEnvJwtAudience,
+                    IssuerSigningKey         = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(fromEnvJwtKey!))
+                };
+            });
+
+        services.AddAuthorization();
+        services.AddScoped<IJwtTokenService, JwtTokenService>();
+    }
+
+    private static void AddDbContext(IServiceCollection services, IConfiguration configuration)
+    {
+        var fromEnv          = Environment.GetEnvironmentVariable("USER_CONNECTION_STRING");
+        var fromConfig       = configuration["USER_CONNECTION_STRING"];
+        var connectionString = !string.IsNullOrWhiteSpace(fromEnv) ? fromEnv : fromConfig;
+
+        services.AddDbContext<UserDbContext>(options =>
+            options.UseNpgsql(connectionString));
+    }
+    
+    private static void AddRepositories(IServiceCollection services)
+    {
+        services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+    }
+}

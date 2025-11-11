@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>$(TargetFramework)</TargetFramework>
+        <LangVersion>$(LangVersion)</LangVersion>
+        <Nullable>$(Nullable)</Nullable>
+        <ImplicitUsings>$(ImplicitUsings)</ImplicitUsings>
+        <ManagePackageVersionsCentrally>$(ManagePackageVersionsCentrally)</ManagePackageVersionsCentrally>
+        <IsTestProject>$(IsTestProject)</IsTestProject>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="AutoBogus" />
+        <PackageReference Include="coverlet.collector" />
+        <PackageReference Include="coverlet.msbuild"/>
+        <PackageReference Include="FluentAssertions" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" />
+        <PackageReference Include="Moq" />
+        <PackageReference Include="NUnit.Analyzers" />
+        <PackageReference Include="NUnit3TestAdapter" />
+        <PackageReference Include="xunit" />
+        <PackageReference Include="xunit.runner.visualstudio" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\src\Fiap.FCG.User.Application\Fiap.FCG.User.Application.csproj" />
+      <ProjectReference Include="..\..\src\Fiap.FCG.User.Domain\Fiap.FCG.User.Domain.csproj" />
+      <ProjectReference Include="..\..\src\Fiap.FCG.User.Infrastructure\Fiap.FCG.User.Infrastructure.csproj" />
+      <ProjectReference Include="..\..\src\Fiap.FCG.User.WebApi\Fiap.FCG.User.WebApi.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Application\" />
+      <Folder Include="Domain\" />
+      <Folder Include="Infrastructure\" />
+      <Folder Include="WebApi\" />
+    </ItemGroup>
+</Project>
