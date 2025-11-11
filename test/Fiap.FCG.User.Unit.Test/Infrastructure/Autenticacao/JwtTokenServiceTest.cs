@@ -36,8 +36,8 @@ public class JwtTokenServiceTest : JwtTokenServiceFixture
         jwtToken.Claims.Should().ContainSingle(c => 
             c.Type == ClaimTypes.NameIdentifier && c.Value == usuario.Id.ToString());
 
-        jwtToken.Issuer.Should().Be("GameStore.Issuer.Teste");
-        jwtToken.Audiences.Should().Contain("GameStore.Audience.Teste");
+        jwtToken.Issuer.Should().Be("Fiap.FCG");
+        jwtToken.Audiences.Should().Contain("Fiap.FCG");
         jwtToken.ValidTo.Should().BeAfter(DateTime.UtcNow);
     }
 }
