@@ -13,4 +13,9 @@ public class UsuarioFaker
             .Generate(5);
         return lista.OrderByDescending(u => u.Id).ToList();
     }
+    
+    public static Usuario Valido()
+    {
+        return new AutoFaker<Usuario>().Generate();
+    }
 }

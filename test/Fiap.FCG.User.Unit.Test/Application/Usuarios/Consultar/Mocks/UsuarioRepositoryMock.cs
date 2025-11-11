@@ -15,4 +15,21 @@ public class UsuarioRepositoryMock : Mock<IUsuarioRepository>
     {
         Verify(x => x.ObterTodosAsync(), Times.Once);
     }
+    
+    public void ConfigurarObterPorIdParaRetornar(Usuario usuario)
+    {
+        Setup(r => r.ObterPorIdAsync(It.IsAny<int>()))
+            .ReturnsAsync(usuario);
+    }
+
+    public void ConfigurarObterPorIdParaRetornarNulo()
+    {
+        Setup(r => r.ObterPorIdAsync(It.IsAny<int>()))
+            .ReturnsAsync((Usuario?)null);
+    }
+
+    public void GarantirObterPorIdChamado()
+    {
+        Verify(r => r.ObterPorIdAsync(It.IsAny<int>()), Times.Once);
+    }
 }
