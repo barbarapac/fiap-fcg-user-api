@@ -54,7 +54,7 @@ public class CadastrarUsuarioControllerTest : CadastrarUsuarioControllerFixture
         {
             sucesso = false,
             mensagem = "Falha ao cadastrar",
-            valor = (string?)null
+            valor = (string)null
         });
 
         MediatorMock.GarantirEnvioDoCadastroCommand();

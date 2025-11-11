@@ -30,8 +30,8 @@ public class ExceptionMiddlewareTest : ExceptionMiddlewareFixture
         context.Response.StatusCode.Should().Be((int)HttpStatusCode.InternalServerError);
         context.Response.ContentType.Should().Be("application/json");
 
-        context.Response.Body.Seek(0, System.IO.SeekOrigin.Begin);
-        using var reader = new System.IO.StreamReader(context.Response.Body);
+        context.Response.Body.Seek(0, SeekOrigin.Begin);
+        using var reader = new StreamReader(context.Response.Body);
         var body = await reader.ReadToEndAsync();
 
         var erro = JsonSerializer.Deserialize<ErrorDetails>(body, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
@@ -59,8 +59,8 @@ public class ExceptionMiddlewareTest : ExceptionMiddlewareFixture
         context.Response.StatusCode.Should().Be((int)HttpStatusCode.InternalServerError);
         context.Response.ContentType.Should().Be("application/json");
 
-        context.Response.Body.Seek(0, System.IO.SeekOrigin.Begin);
-        using var reader = new System.IO.StreamReader(context.Response.Body);
+        context.Response.Body.Seek(0, SeekOrigin.Begin);
+        using var reader = new StreamReader(context.Response.Body);
         var body = await reader.ReadToEndAsync();
 
         var erro = JsonSerializer.Deserialize<ErrorDetails>(body, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });

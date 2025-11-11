@@ -25,7 +25,7 @@ public class UsuarioRepositoryMock : Mock<IUsuarioRepository>
     public void ConfigurarObterPorIdParaRetornarNulo()
     {
         Setup(r => r.ObterPorIdAsync(It.IsAny<int>()))
-            .ReturnsAsync((Usuario?)null);
+            .ReturnsAsync((Usuario)null);
     }
 
     public void GarantirObterPorIdChamado()

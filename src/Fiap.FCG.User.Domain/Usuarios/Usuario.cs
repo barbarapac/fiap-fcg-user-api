@@ -29,7 +29,7 @@ public class Usuario : Base
         if (string.IsNullOrWhiteSpace(nome))
             return Result.Failure<Usuario>("Nome é obrigatório.");
 
-        if (string.IsNullOrWhiteSpace(email) || !email.Contains("@"))
+        if (string.IsNullOrWhiteSpace(email) || !email.Contains('@'))
             return Result.Failure<Usuario>("Email inválido.");
 
         var senhaValida = SenhaExtension.ValidarSenha(senha);
@@ -42,7 +42,7 @@ public class Usuario : Base
         return Result.Success(usuario);
     }
     
-    public Result<Usuario> Atualizar(string? nome, string? senha, bool? desejaReceberNotificacoes = null)
+    public Result<Usuario> Atualizar(string nome, string senha, bool? desejaReceberNotificacoes = null)
     {
         if (string.IsNullOrWhiteSpace(nome) && string.IsNullOrWhiteSpace(senha))
             return Result.Failure<Usuario>("Informe ao menos o e-mail ou a senha para atualizar.");

@@ -7,7 +7,7 @@ using MediatR;
 
 namespace Fiap.FCG.User.Application.Autenticacao;
 
-public class LoginCommandHandler : IRequestHandler<LoginCommand, LoginResponse?>
+public class LoginCommandHandler : IRequestHandler<LoginCommand, LoginResponse>
 {
     private readonly IUsuarioRepository _usuarioRepository;
     private readonly IJwtTokenService _jwtTokenService;

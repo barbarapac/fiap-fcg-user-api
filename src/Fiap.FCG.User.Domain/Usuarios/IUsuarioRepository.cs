@@ -7,7 +7,7 @@ namespace Fiap.FCG.User.Domain.Usuarios;
 public interface IUsuarioRepository
 {
     Task<Usuario> ObterPorIdAsync(int id);
-    Task<Usuario?> ObterPorEmailAsync(string email);
+    Task<Usuario> ObterPorEmailAsync(string email);
     Task<Result<Usuario>> AdicionarAsync(Usuario usuario);
     Task<List<Usuario>> ObterTodosAsync();
     Task<Result<Usuario>> AtualizarAsync(Usuario usuario);

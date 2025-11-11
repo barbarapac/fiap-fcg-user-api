@@ -12,10 +12,10 @@ public class AtualizarCommand : IRequest<Result<string>>
     public int Id { get; set; }
 
     [SwaggerSchema("Nome do usuário")]
-    public string? Nome { get; set; }
+    public string Nome { get; set; }
 
     [SwaggerSchema("Senha do usuário (opcional)")]
-    public string? Senha { get; set; }
+    public string Senha { get; set; }
 
     public bool DesejaReceberNotificacoes { get; set; } = true;
 }
