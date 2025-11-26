@@ -1,4 +1,8 @@
-﻿using Fiap.FCG.User.Domain._Shared;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Fiap.FCG.User.Domain._Shared;
 using Fiap.FCG.User.Domain.Usuarios;
 using Fiap.FCG.User.Infrastructure._Shared;
 using Microsoft.EntityFrameworkCore;
@@ -14,7 +18,7 @@ public class UsuarioRepository : IUsuarioRepository
         _context = context;
     }
 
-    public async Task<Usuario?> ObterPorIdAsync(int id)
+    public async Task<Usuario> ObterPorIdAsync(int id)
     {
         return await _context.Set<Usuario>()
                              .AsNoTracking()

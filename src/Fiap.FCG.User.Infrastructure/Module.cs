@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using Fiap.FCG.User.Domain.Usuarios;
 using Fiap.FCG.User.Infrastructure._Shared;

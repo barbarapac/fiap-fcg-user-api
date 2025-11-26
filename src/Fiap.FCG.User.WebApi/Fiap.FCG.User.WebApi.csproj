@@ -10,6 +10,13 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Google.Protobuf" />
+        <PackageReference Include="Grpc.AspNetCore" />
+        <PackageReference Include="Grpc.AspNetCore.Server.Reflection" />
+        <PackageReference Include="Grpc.Tools">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
         <PackageReference Include="MediatR" />
         <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" />
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
@@ -17,6 +24,9 @@
         <PackageReference Include="Swashbuckle.AspNetCore" />
         <PackageReference Include="Swashbuckle.AspNetCore.Annotations" />
     </ItemGroup>
+    
+
+    
 
     <ItemGroup>
       <ProjectReference Include="..\Fiap.FCG.User.Application\Fiap.FCG.User.Application.csproj" />
@@ -26,4 +36,7 @@
       <Folder Include="Usuarios\" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Protobuf Include="Protos\usuario.proto" GrpcServices="Server" />
+    </ItemGroup>
 </Project>

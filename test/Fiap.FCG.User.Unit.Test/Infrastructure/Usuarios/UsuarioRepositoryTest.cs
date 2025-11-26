@@ -142,4 +142,34 @@ public class UsuarioRepositoryTest
         // Assert
         resultado.Sucesso.Should().BeFalse();
     }
+    
+    [Fact]
+    public async Task ObterPorIdAsync_QuandoUsuarioExiste_DeveRetornarUsuario()
+    {
+        // Arrange
+        using var fixture = new UsuarioRepositoryFixture();
+        var usuario = UsuarioFaker.Valido();
+        await fixture.Context.Set<Usuario>().AddAsync(usuario);
+        await fixture.Context.SaveChangesAsync();
+
+        // Act
+        var resultado = await fixture.Repository.ObterPorIdAsync(usuario.Id);
+
+        // Assert
+        resultado.Should().NotBeNull();
+        resultado!.Id.Should().Be(usuario.Id);
+    }
+    
+    [Fact]
+    public async Task ObterPorIdAsync_QuandoNaoExiste_DeveRetornarNull()
+    {
+        // Arrange
+        using var fixture = new UsuarioRepositoryFixture();
+
+        // Act
+        var resultado = await fixture.Repository.ObterPorIdAsync(9999);
+
+        // Assert
+        resultado.Should().BeNull();
+    }
 }

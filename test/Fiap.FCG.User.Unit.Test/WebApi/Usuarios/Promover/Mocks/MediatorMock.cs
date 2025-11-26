@@ -1,6 +1,4 @@
-﻿using Fiap.FCG.User.Application.Usuarios.Atualizar;
-using Fiap.FCG.User.Application.Usuarios.Cadastrar;
-using Fiap.FCG.User.Application.Usuarios.Promover;
+﻿using Fiap.FCG.User.Application.Usuarios.Promover;
 using Fiap.FCG.User.Domain._Shared;
 using MediatR;
 using Moq;
