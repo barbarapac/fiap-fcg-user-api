@@ -109,7 +109,7 @@ jobs:
 
       - name: Apply manifest Kubernetes (User)
         run: |
-          kubectl apply -f k8s-user.yml
+          kubectl apply -f k8s-user.yaml
 
       - name: Atualizar imagem no Deployment (User)
         run: |
