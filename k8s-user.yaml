@@ -70,6 +70,11 @@ spec:
                 secretKeyRef:
                   name: fcg-user-api-secrets
                   key: JWT_AUDIENCE
+            - name: APPLICATIONINSIGHTS_CONNECTION_STRING
+              valueFrom:
+                secretKeyRef:
+                  name: fcg-user-api-secrets
+                  key: APPLICATIONINSIGHTS_CONNECTION_STRING
           resources:
             requests:
               cpu: "100m"
